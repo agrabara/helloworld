@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const date = new Date();
+
 let dd,mm,yyyy,HH,hh,MM,SS;
   
 // Function to convert
@@ -20,7 +20,11 @@ const formatHour = (input) => {
   }
   return input;
 };
-  
+
+
+
+app.get('/', (req, res) => {
+  let date = new Date();
   dd = formatData(date.getDate());
   mm = formatData(date.getMonth() + 1);
   yyyy = date.getFullYear();
@@ -29,9 +33,8 @@ const formatHour = (input) => {
   MM= formatData(date.getMinutes());
   SS= formatData(date.getSeconds());
 
-
-app.get('/', (req, res) => {
   res.send('Moja pierwsza apka chmurowa - dla Sławka! '+ `${mm}/${dd}/${yyyy} ${HH}:${MM}:${SS}`);
+  console.log('Odpalone '+ `${mm}/${dd}/${yyyy} ${HH}:${MM}:${SS}`);
 });
 
 const PORT = process.env.PORT || 8080;
